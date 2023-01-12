@@ -87,53 +87,66 @@ Make sure my server is up to date
 apt update
 ```
 
-### DMS Installation
+### Docker
 
-Lets first downlaod and setup our DMS executable
+First we will need to have Docker, a popular containerization platform, installed to our server.
 
-Step 1: We will use the following curl command:
+You will want to follow dockers documentation linked here as the steps may be diffent depending on the operating system your server is running on.
 
-```bash
-curl https://raw.githubusercontent.com/overture-stack/dms/<x.y.z>/src/main/bin/dms-docker > dms
-```
+I'm running on Ubuntu
 
-If we go to the DMS github repository
+Step 1: Add the Docker GPG key
 
 ```bash
-www.github.com/overture-stack/dms
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
-You can see that at the time of this video the latest verions of the DMS is 1.2.0. 
+Step 2: 
 
-Step 2: lets make the DMS file executable
+Add the docker repository to your systems software sources
 
 ```bash
-chmod +x dms
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 ```
-Step 3: lets make this file usable from anywhere by moving it to the local binary folder
+
+Step 3: we will run apt update
 
 ```bash
-mv dms /usr/local/bin/
+apt update
 ```
 
-Step 4: lets see if everything is working as it should
+step 4: install docker
 
 ```bash
-dms -h
+apt install docker-ce
 ```
 
-You should see the help menu print out, this command also generates the dms directory which we can confirm exists by 
+step 5: Start the Docker Daemon:
 
 ```bash
-cd ~/.dms
+systemctl start docker
 ```
 
-While we are here I will upload and save my logo file to the assets folder within the dms directory. I'm going to make sure I name the file correctly dms_logo.png
+step 5: verify that docker has been installing and is running
 
-This file can be a JPG, PNG, or SVG.
+```bash
+docker run hello-world
+```
+
+This command should download and run a test container, displaying a message indicating that Docker is working properly.
 
 
-Awesome, now that the DMS executable is installed and we've uploaded our logo, we can proceed with our our pre-deployment configuration. 
+The DMS requires us to initialize Docker swarm which is quite simple using the command
+
+```bash
+docker swarm init
+```
+
+If successful we should see the following message
+
+```bash
+swarm initialized: current node (eoiw3io2ion3oinri4o90490v) is now a manager.
+```
 
 ### SSL Certificate
 
@@ -219,66 +232,54 @@ Step 9: On the next page, you will see your client ID and client secret. Make su
 
 That's it! You now have a client ID and client secret that you can use to authenticate your application with Google's API. 
 
-### Docker
 
-Next we will walk you through the process of installing Docker, a popular containerization platform, on our server.
+### DMS Installation
 
-You will want to follow dockers documentation linked here as the steps may be diffent depending on the operating system your server is running on.
+Lets first downlaod and setup our DMS executable
 
-I'm running on Ubuntu
-
-Step 1: Add the Docker GPG key
+Step 1: We will use the following curl command:
 
 ```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl https://raw.githubusercontent.com/overture-stack/dms/<x.y.z>/src/main/bin/dms-docker > dms
 ```
 
-Step 2: 
-
-Add the docker repository to your systems software sources
+If we go to the DMS github repository
 
 ```bash
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+www.github.com/overture-stack/dms
 ```
 
-Step 3: we will run apt update
+You can see that at the time of this video the latest verions of the DMS is 1.2.0. 
+
+Step 2: lets make the DMS file executable
 
 ```bash
-apt update
+chmod +x dms
 ```
-
-step 4: install docker
+Step 3: lets make this file usable from anywhere by moving it to the local binary folder
 
 ```bash
-apt install docker-ce
+mv dms /usr/local/bin/
 ```
 
-step 5: Start the Docker Daemon:
+Step 4: lets see if everything is working as it should
 
 ```bash
-systemctl start docker
+dms -h
 ```
 
-step 5: verify that docker has been installing and is running
+You should see the help menu print out, this command also generates the dms directory which we can confirm exists by 
 
 ```bash
-docker run hello-world
+cd ~/.dms
 ```
 
-This command should download and run a test container, displaying a message indicating that Docker is working properly.
+While we are here I will upload and save my logo file to the assets folder within the dms directory. I'm going to make sure I name the file correctly dms_logo.png
+
+This file can be a JPG, PNG, or SVG.
 
 
-The DMS requires us to initialize Docker swarm which is quite simple using the command
-
-```bash
-docker swarm init
-```
-
-If successful we should see the following message
-
-```bash
-swarm initialized: current node (eoiw3io2ion3oinri4o90490v) is now a manager.
-```
+Awesome, now that the DMS executable is installed and we've uploaded our logo, we can proceed
 
 ### DMS Questionaire 
 
