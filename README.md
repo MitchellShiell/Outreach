@@ -1,7 +1,7 @@
 </br>
 
 <div align="center">
-<img src='https://user-images.githubusercontent.com/59712867/211955307-9d8ca50d-6b02-49c5-a775-9dd8b9793b0b.png' width='400' hspace="0">
+<img src='https://user-images.githubusercontent.com/59712867/211955307-9d8ca50d-6b02-49c5-a775-9dd8b9793b0b.png' href="https://github.com/MitchellShiell/Outreach/wiki" width='400' hspace="0">
 </div>
 
 </br>
