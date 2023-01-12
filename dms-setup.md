@@ -93,6 +93,8 @@ First we will need to have Docker, a popular containerization platform, installe
 
 You will want to follow dockers documentation linked here as the steps may be diffent depending on the operating system your server is running on.
 
+https://docs.docker.com/get-docker/
+
 I'm running on Ubuntu
 
 Step 1: Add the Docker GPG key
