@@ -9,6 +9,7 @@ In this repository you will find all resources related to Overture Outreach.
 Road Map
 
 - Understand People and Product
+- Set up Outreach wiki outline
 
 ## Quick Links
 
