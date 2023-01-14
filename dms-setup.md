@@ -4,6 +4,15 @@
 
 Script tutorial on setting up the DMS on a server linked to a secure domain. 
 
+Using Iterm with oh-my-zsh spaceship theme
+ - cmd +, + , + (3x mag for easy to read text)
+ - Terminal Dimension is 83x39 (dimension is specific to the magnification setting above)
+ - Centered
+
+Chrome brower in full screen mode on second desktop so i can swipe back and fourth as required and therefore don't need to move the terminal around (gives flexibility and consistency when editing)
+
+Part 4 cheat sheet
+
 ## Structure 
 
 - [Getting Started](#part-1-getting-started)
@@ -95,48 +104,9 @@ You will want to follow dockers documentation linked here as the steps may be di
 
 https://docs.docker.com/get-docker/
 
-I'm running on Ubuntu
-
-Step 1: Add the Docker GPG key
-
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-Step 2: 
-
-Add the docker repository to your systems software sources
-
-```bash
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-```
-
-Step 3: we will run apt update
-
-```bash
-apt update
-```
-
-step 4: install docker
-
-```bash
-apt install docker-ce
-```
-
-step 5: Start the Docker Daemon:
-
-```bash
-systemctl start docker
-```
-
-step 5: verify that docker has been installing and is running
-
-```bash
-docker run hello-world
-```
+I'm running on Ubuntu.. run through docker steps quickly
 
 This command should download and run a test container, displaying a message indicating that Docker is working properly.
-
 
 The DMS requires us to initialize Docker swarm which is quite simple using the command
 
@@ -149,6 +119,12 @@ If successful we should see the following message
 ```bash
 swarm initialized: current node (eoiw3io2ion3oinri4o90490v) is now a manager.
 ```
+
+---
+
+clear
+
+---
 
 ### SSL Certificate
 
@@ -188,7 +164,13 @@ Once the certificate is issued you will see a message indicating that the certif
 
 Lets copy an paste the path to that certificate in our notes for later.
 
+
 ---
+
+### clear
+
+---
+
 
 ### Identity Providers
 
@@ -235,6 +217,13 @@ Step 9: On the next page, you will see your client ID and client secret. Make su
 That's it! You now have a client ID and client secret that you can use to authenticate your application with Google's API. 
 
 
+---
+
+### Cut
+
+---
+
+
 ### DMS Installation
 
 Lets first downlaod and setup our DMS executable
@@ -270,7 +259,11 @@ Step 4: lets see if everything is working as it should
 dms -h
 ```
 
-You should see the help menu print out, this command also generates the dms directory which we can confirm exists by 
+You should see the help menu print out,
+
+you can see some links to our documentation as well.
+
+this command also generates the dms directory which we can confirm exists by 
 
 ```bash
 cd ~/.dms
@@ -278,10 +271,19 @@ cd ~/.dms
 
 While we are here I will upload and save my logo file to the assets folder within the dms directory. I'm going to make sure I name the file correctly dms_logo.png
 
+```bash
+mv $HOME/dms_logo.png
+```
+
 This file can be a JPG, PNG, or SVG.
 
-
 Awesome, now that the DMS executable is installed and we've uploaded our logo, we can proceed
+
+---
+
+### Clear
+
+---
 
 ### DMS Questionaire 
 
@@ -293,32 +295,123 @@ dms config build
 
 Follow the questionnaire, from start to finish, default values are displayed in the brackets, if you just hit enter your response will be saved as the default value. No for each step there is a convienent url linking to the relevant documentation. 
 
-Ego
+This questionaire is divided into seperate sections representing each services or component within overture
 
-- authorization and authentication
+---
 
-Song
+### Can Cut
 
-- metadata indexing service
+---
 
-Score
+**cluster mode & gateway**
 
-- data transfer service
+The cluster mode determines whether i am running locally or in the server mode, If you want detailed infromation on each step their will be linked documentation at every step of this questionaire
 
-elastic search service
+The gateway is an ingress controller exposing all the overture servers through one port, to access this we need a domain name setup in advance. you can see there are examples for these questions in the brackets. 
 
-- we use elastic search to index our data for easy search and retrival from our front-end UI's
+So in this section i will put down my domain name
 
-maestro
+Next I'll need the absolute path for the SSL certificate, if you followed along with certbot you can click enter as the default seen in sqaure brackets is indeed the path of our SSL cert
 
-- takes the stored data and indexes into elastic-search, we need to provide an alias or a name for an index
-arranger
+---
 
-DMS UI
+### Can Cut
 
-- The end user data portal where users can search explore and download submitted data
+---
 
-Now that our configuration is complete we are ready to deploy our DMS. 
+**Ego**
+
+Next up is Ego which is our authentication and authorization service, it will need some validity periods for our API keys and JWT.
+
+I will be going with the default options, if you want some more detailed information on this configuration step I recommend using the link found under the section title
+
+Our next choice is going to be choosing which OAuth identity providers we want to configure our DMS to accept
+
+This will allow users and admins to use these single sign on identity providers with our services
+
+We have already setup our client and secret IDs for google, and again for the sake of time we will only configure for google but please follow the documentations linked here if you wish to include the other OAuth providers.
+
+---
+
+### Can Cut
+
+---
+
+**Song**
+
+Okay next up is song our metadata indexing service
+
+Not a lot of configurations required for installation and intial deployment for song however their is tons of cool things we can do to configure it later on
+
+**Score**
+
+Next up is score, our data transfer microservices
+
+here it's asking if i have an exiting S3 object storage service, to use with Score, Now if we don't have an existing services and go with No it will by default provide the free MinIO service that comes bundled with the DMS. 
+
+Do I want to create credentials automatically, Yup
+
+Next it will ask about the name of my data buckets, for this case i'm fine with the default names
+
+---
+
+### Can Cut
+
+---
+
+**elastic search service**
+
+we use elastic search to index our data for easy search and retrival from our front-end UI's
+
+The default username for ealstic search is `elastic` for this step I'll just need to input a password
+
+---
+
+### Can Cut
+
+---
+
+**maestro**
+
+Maestro takes the song metadata and indexes into elastic-search
+
+For this step we need to provide an alias or a name for an index, again I will go with the defaults
+
+---
+
+### Can Cut
+
+---
+
+**DMS UI**
+
+The end user data portal where users can search explore and download submitted data
+
+The first config is an email where users can contact you for support!
+
+Next I can customize the name of the data portal, default is boring
+
+---
+
+### Can Cut
+
+---
+
+**Arranger**
+
+Okay so we are now given this large note,
+
+So the next three fields are fields that will configure our arranger service
+
+Arranger interfaces between the elastic search index and the DMS UI components so these configuration settings will allow us to customize our faceted search fields 
+
+As arranger interacts with the data portal UI it needs to match the IDs we set, for now we will go with the defaults, you can always go back and view your configuration file but it's good to take note of whatever you name these files as you will need to referecne them later
+
+---
+
+### Clear
+
+---
 
 ## Part 3: Deployment
 
@@ -334,54 +427,118 @@ It may take some time for the deployment to exit successfully, the relatively la
 
 Once complete you should see a success message "Deployment completed successfully insluding a link to the relevant documentation for our next segement, post-deployment verification.
 
-## Part 4: Post-Deployment Configuration
+
+
+---
+
+### Cut
+
+--- 
+
+## Part 4: Post-Deployment Configuration and sanity checks
+
+If all is well we should see replicas of each service,
+
+So as we can see we have a success message but we do still want to confirm that the services docker have replciated on docker
 
 ```bash
 docker service ls
 ```
 
-Check that Ego API is running
+some services deploy quickly while other might take longer, overall this is a fairly quick process.
+
+Lets check out and verify our deployment
+
+First we will check the Ego API is running
+
 ```bash
 https://<myDomain>/ego-api/swagger-ui.html
 ```
 
-Check and Configure Ego UI
-```bash
-```
+If your not familliar with swagger-ui's they can be quite handy, all of the api endpoints are labeled here and if we click on each one we are provided information and interaction with each endpoint, super handy we will definitly interact with this and become more familair in future tutorials.
 
-Login and Configure Ego UI
+
+Next I will want to check out my Ego UI,
+
+it's important we login now as their are currently no users in the system and we do require atleast one administrator.
+
+Conviently enough the first login to Ego-UI will always be assigned to role of admin so we will want to do that we have freshly deployed our DMS. 
+
 ```bash
 https://<myDomain>/ego-ui
 ```
 
-Check Song API is running
+So from this dashboard I can see that I am an admin, but I still don't have all the neccesassary permission as an admin. So What i will do is add a group and in this case i will select the DMS admin group which will grant me write permissions for the DMS, Score, and Song. This will be important later on.
+
+speaking about song let's check that the Song API is running
+
 ```bash
 https://<myDomain>/song-api/swagger-ui.html
 ```
 
+So tracks and validates metadata across object storage, on that note lets check to see if our object storage is up and running for me and maybe you that means checking minIO.
+
 Check MinIO is running (Optional)
+
 ```bash
 https://<myDomain>/minio
 ```
+
+I'll check my config.yaml for the credentials i need
+
+perfect here we can see my two buckets were successfully created.
+
+now to build the indexes for elastic search we want to make sure the maestro api is working
 
 Check Maestro API is running
 ```bash
 https://<myDomain>/maestro/api-docs
 ```
 
+now lets make sure Elasticsearch is running (install elastichead)
 
+For this i will install the chrome extention elastichead, for firefox you can downlaod elasticview, you may even have kabanas own proprietary elastic tool. I will be using elastic head, I'll be sure to link to the other extentions mentioned in the description.
 
-Check Elasticsearch is running (install elastichead)
 ```bash
 https://<myDomain>/elasticsearch
 ```
 
-Add project ot Arranger-ui
+click connect and then we will pull our credentials from our config.yaml file 
+
+and now I am able to see and browse my file_centric indice and all the fields contained within. 
+
+Now the fields of this index that will be displayed in our DMS is configured and handled by arranger. so lets now check that is up and running.
+
 ```bash
 https://<myDomain>/arranger-ui/
 ```
+up and running, nice, but we can see we don't have any projects, we will need to make one so that arranger is able to pull the fields we require from the elastic search index and into our portal.
 
-Check the data portal is running
-```bash
-https://<myDomain>
-```
+Now we want to make sure our naming is consistent with the values we chose in our DMS confi questionaire. If we pull up the config.ymal file we can see the names we chose. since the DMS UI will be referencing these names we want them to be consistent in arrange.
+
+> Add project
+
+Project ID = file
+Name = file
+ES index = file_centric
+
+this matches our config with the DMS-UI and the ES index
+
+next we need to input a json metadata file to describe the configuratoin of our project.
+
+To start off we will use a downloadable sample
+
+<link>
+
+Now the same fields we saw in elastic search are seen here in arranger
+
+if i go to the table table I can pick the fields included and the order. 
+
+Lastly I will access our data portal by just heading to my domain 
+
+And from here we should see our customized faceted search, our logo, our custom name.
+
+
+You'll notice there is no data. 
+
+Not to worry, our next video we will run through a data upload workflow
