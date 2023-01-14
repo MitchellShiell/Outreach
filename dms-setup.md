@@ -122,7 +122,7 @@ swarm initialized: current node (eoiw3io2ion3oinri4o90490v) is now a manager.
 
 ---
 
-clear
+### clear
 
 ---
 
@@ -299,7 +299,7 @@ This questionaire is divided into seperate sections representing each services o
 
 ---
 
-### Can Cut
+### Potential Cut
 
 ---
 
@@ -315,7 +315,7 @@ Next I'll need the absolute path for the SSL certificate, if you followed along 
 
 ---
 
-### Can Cut
+### Potential Cut
 
 ---
 
@@ -333,7 +333,7 @@ We have already setup our client and secret IDs for google, and again for the sa
 
 ---
 
-### Can Cut
+### Potential Cut
 
 ---
 
@@ -355,7 +355,7 @@ Next it will ask about the name of my data buckets, for this case i'm fine with 
 
 ---
 
-### Can Cut
+### Potential Cut
 
 ---
 
@@ -379,7 +379,7 @@ For this step we need to provide an alias or a name for an index, again I will g
 
 ---
 
-### Can Cut
+### Potential Cut
 
 ---
 
@@ -393,7 +393,7 @@ Next I can customize the name of the data portal, default is boring
 
 ---
 
-### Can Cut
+### Potential Cut
 
 ---
 
@@ -427,8 +427,6 @@ It may take some time for the deployment to exit successfully, the relatively la
 
 Once complete you should see a success message "Deployment completed successfully insluding a link to the relevant documentation for our next segement, post-deployment verification.
 
-
-
 ---
 
 ### Cut
@@ -458,6 +456,12 @@ https://<myDomain>/ego-api/swagger-ui.html
 If your not familliar with swagger-ui's they can be quite handy, all of the api endpoints are labeled here and if we click on each one we are provided information and interaction with each endpoint, super handy we will definitly interact with this and become more familair in future tutorials.
 
 
+---
+
+### Cut
+
+--- 
+
 Next I will want to check out my Ego UI,
 
 it's important we login now as their are currently no users in the system and we do require atleast one administrator.
@@ -469,6 +473,13 @@ https://<myDomain>/ego-ui
 ```
 
 So from this dashboard I can see that I am an admin, but I still don't have all the neccesassary permission as an admin. So What i will do is add a group and in this case i will select the DMS admin group which will grant me write permissions for the DMS, Score, and Song. This will be important later on.
+
+
+---
+
+### Cut
+
+--- 
 
 speaking about song let's check that the Song API is running
 
@@ -487,6 +498,13 @@ https://<myDomain>/minio
 I'll check my config.yaml for the credentials i need
 
 perfect here we can see my two buckets were successfully created.
+
+
+---
+
+### Cut
+
+--- 
 
 now to build the indexes for elastic search we want to make sure the maestro api is working
 
@@ -507,6 +525,12 @@ click connect and then we will pull our credentials from our config.yaml file
 
 and now I am able to see and browse my file_centric indice and all the fields contained within. 
 
+---
+
+### Cut
+
+--- 
+
 Now the fields of this index that will be displayed in our DMS is configured and handled by arranger. so lets now check that is up and running.
 
 ```bash
@@ -526,19 +550,27 @@ this matches our config with the DMS-UI and the ES index
 
 next we need to input a json metadata file to describe the configuratoin of our project.
 
-To start off we will use a downloadable sample
+We are going to take a bit of a shortcut here, I am going to provide and link four JSON files to get us started, for now we will use these.
 
-<link>
+In the tutorial planned to follow we'll cover how these files are structured and how to configure them in greater detail. 
+
+(https://github.com/overture-stack/dms/tree/develop/example-data/arranger_metadata)
 
 Now the same fields we saw in elastic search are seen here in arranger
 
 if i go to the table table I can pick the fields included and the order. 
 
+
+---
+
+### Cut
+
+--- 
+
 Lastly I will access our data portal by just heading to my domain 
 
 And from here we should see our customized faceted search, our logo, our custom name.
 
+if you made it this far congrats! 
 
-You'll notice there is no data. 
-
-Not to worry, our next video we will run through a data upload workflow
+Now that we have a DMS to work with in our next tutorial we will upload some data and discuss the data lifecycle workflow as well as how to configure and customize the DMS in greater detail. 
