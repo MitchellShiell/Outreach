@@ -25,12 +25,7 @@ What is the problem. What does this component do to solve it. Are there any rela
 
 <!--Blockqoute-->
 
-</br>
-
 ***or if not "vital" (DMS)***
-
-</br>
-
 
 <!--Blockqoute-->
 
@@ -60,7 +55,7 @@ What is the problem. What does this component do to solve it. Are there any rela
 - For our user installation guide see our website [here](https://www.overture.bio/documentation/ego/installation/)
 - For administrative guidance see our website [here](https://www.overture.bio/documentation/ego/user-guide/admin-ui/)
 
-## Setting up the developer enviorment
+## Setting up the developer enviorment (Quick Start, Setup, etc.)
 
 Use ```code snippets``` when requried
 
