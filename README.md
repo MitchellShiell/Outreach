@@ -10,7 +10,7 @@ In this repository you will find all resources related to Overture Outreach.
 
 - Understand People and Product
 - Set up Outreach resource center
-- Define the goals and objectives of Outreach
+
 
 ## Quick Links
 
