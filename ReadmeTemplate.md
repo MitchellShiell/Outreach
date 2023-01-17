@@ -41,7 +41,7 @@ What is the problem. What does this component do to solve it. Are there any rela
 > <img align="left" src="ov-logo.png" height="80" hspace="0"/>
 > </div>
 > 
-> *X is part of [Overture](https://www.overture.bio/) an ecosystem of open source, modualar and extendable research software components</br></br>*
+> *X is part of [Overture](https://www.overture.bio/) an ecosystem of open source, modular and extendable research software components. With our data management solutions, scientists can significantly improve the lifecycle of their data and the quality of their research. See our [related products](#related-products) for more information on what Overture can offer.</br></br>*
 > 
 > 
 
