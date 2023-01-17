@@ -25,7 +25,13 @@ What is the problem. What does this component do to solve it. Are there any rela
 
 <!--Blockqoute-->
 
-or if not "vital" (DMS)
+</br>
+
+***or if not "vital" (DMS)***
+
+</br>
+
+
 <!--Blockqoute-->
 
 </br>
@@ -41,6 +47,7 @@ or if not "vital" (DMS)
 
 <!--Blockqoute-->
 
+***Info and logos should line up from view of Repo***
 
 ## Technical Specifications
 
