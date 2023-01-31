@@ -214,9 +214,13 @@ Now that we have our song and score client configured we are ready to prepare ou
 
 **What is a study**
 
-Next, we must create a study in Song. The concept of a study is used to group data that belongs together and must be submitted and indexed together.
+Our first step in our data upload workflow is going to be creating ***a study*** in song.
 
-Moving forward, we will use a set of sample data prepared for a test study with the ID,`mystudy-123`.
+In song ***a study*** is simply a group of data that belongs together therefore will be submitted and indexed together.
+
+For this video our study is all the data we are submitting from the `mystudy-123` example data folder.
+
+With song we can create a study in our command line using our client or using the swagger UI
 
 ***
 
@@ -228,17 +232,25 @@ Moving forward, we will use a set of sample data prepared for a test study with 
 
 ***
 
-***To create your study via cURL:***
-
-Open a command-line terminal session.
-
-Enter the following command:
+***To create your study via cURL in our terminal we will enter the following command:**
 
 ```bash
 curl -X POST "https://dmstutorial.cancercollaboratory.org/song-api/studies/mystudy-123/" -H  "accept: */*" -H  "Authorization: bearer <API KEY>" -H  "Content-Type: application/json" -d "{  \"description\": \"string\",  \"info\": {  },  \"name\": \"string\",  \"organization\": \"string\",  \"studyId\": \"mystudy-123\"}"
 ```
 
-Leave description, info, name, organization blank (can be filled in optionally if you want).
+We will leave the description, info, name, organization blank (can be filled in optionally if you want).
+
+If successful, we will get this status response:
+
+```bash
+{
+  "message": "Successfully created study 'mystudyID-123'"
+}
+```
+
+ This indicates to us that the study was created in Song
+
+
 
 ***
 
@@ -250,28 +262,26 @@ Leave description, info, name, organization blank (can be filled in optionally i
 
 ***
 
-***Create Study Using Swagger UI***
-
-Go to the Song API's Swagger UI:
+***To Create a Study Using Swagger UI we will need to go to the Song API's Swagger UI:***
 
 https://dmstutorial.cancercollaboratory.org/song-api/swagger-ui.html
 
 Under Study click the POST /studies/{studyId}/ CreateStudy endpoint.
 
-Click Try it out.
-Click the Authorize button in the top right.
+Click Try it out then select the Authorize button in the top right.
 
-Under Authorization, enter the Bearer <API Key> and click Authorize, where <API Key> is the API Key value you generated earlier.
-In the study body, in the studyId field, replace "string" with "ABC123".
+Under Authorization, I'll enter the Bearer <API Key> and click Authorize. (this is the same API key we obtained from our DMS UI)
+ 
+In the study body, we will update the studyId field, by replacing "string" with "mystudyID-123".
 In the studyId field, enter ABC123.
 
 Click Execute. 
 
-If successful, either the cURL command or the Swagger UI will return a successful response indicating the study is created in Song:
+If successful, we will get the same status response, this indicates to us that the study was created in Song:
 
 ```bash
 {
-  "message": "Successfully created study 'ABC123'"
+  "message": "Successfully created study 'mystudyID-123'"
 }
 ```
 
