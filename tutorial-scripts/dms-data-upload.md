@@ -15,10 +15,9 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 
 
 #### [Introduction](#part-0-introduction)
-#### [Part 1 Setting up the Song and Score Clients](#part-1-setting-up-the-score-and-song-clients) :checkmark: 
+#### [Part 1 Setting up the Song and Score Clients](#part-1-setting-up-the-score-and-song-clients) :white_check_mark:
 - [Download and Configure the Song Client](#download-and-configure-the-song-client)
 - [Download and Configure Score Client](#download-and-configure-the-song-client)
-- [Configure User and Application Permissions](#configure-user-permissions-in-ego)
 #### [Part 2 Preparing your first payload](#part-2-preparing-our-first-payload)
 - [Create a Study in song](#create-a-study-in-song)
 - [Submit Analysis to Song](#submit-analysis-to-song)
