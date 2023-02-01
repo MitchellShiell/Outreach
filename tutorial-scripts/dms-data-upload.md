@@ -20,7 +20,7 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 - [Download and Configure Score Client](#download-and-configure-the-song-client)
 #### [Part 2 Preparing your first payload](#part-2-preparing-our-first-payload)
 - [Create a Study in song](#create-a-study-in-song)
-- [Submit Analysis to Song](#submit-analysis-to-song)
+- [Submitting an Analysis to Song](#submitting-an-analysis-to-song)
 - [Create Manifest for Score](#create-manifest-for-score)
 #### [Part 3 Uploading and Publishing](#part-3-uploading-and-publishing-the-analysis)
 - [Upload Data via Score](#upload-data-via-score)
@@ -295,68 +295,136 @@ If successful, we will get the same status response, this indicates to us that t
 
 ***
 
-### Submit Analysis to Song
+### Submiting an Analysis to Song
 
-**what is an analysis** 
 
-What is an Analysis?
+### Submiting an Analysis to Song
 
-Metadata is collected as analysis in Song. An analysis is composed of the complete metadata record and the corresponding a set of data files, all grouped as an JSON object.
+Next, we must submit an analysis to Song. 
 
-Submitted data consists of data files (e.g. sequencing reads or VCFs), as well as any associated file metadata (data that describes your data). When metadata and the data files are combined, it is referred to as a Song Analysis. An analysis is a trackable unit of data that keeps metadata and a file associated together, and is the main entity in a Song database.
+What is an ***analysis?***
 
-Analysis types are described by Song administrators, who can model the data inside an analysis type by creating Dynamic Schemas. An analysis type can contain any variety of information that needs to be recorded about a file type, defined in JSON format.
+When we submit data (in this case a variant call file) we also need to submit the metadata associated with that file. In Song this combination of data and metadata is called the ***analysis.***
 
-Song users mainly interact with Song by submitting data against an established analysis type schema, or by downloading files associated to an analysis in a bundle (e.g multiple files that are bundled together in one analysis).
+All the metadata is recorded within a JSON file. This JSON file contains references to the data files, typically sequences reads or VCFs and all the associated metadata.
 
-Next, we must submit an analysis to Song. All submitted data must be associated to some type of analysis registered with Song. For demonstration purposes here, we will simply submit a default analysis type that is already pre-registered out-of-the-box, variantCall. We have a seperate tutorial on registeing your own analysis type schemas linked here.
-
-JSON Schema
-
-Data is submitted to Song in JSON format. All data uploads are validated against a data model schema. Song ensures that all submitted data meets the desired structure and allowed values. To validate metadata at the time of submission, Song leverages JSON Schema. JSON Schema provides a vocabulary for the structural validation of JSON formatted data, for example, ensuring that required fields are present, or that the contents of a field matches the desired data type or allowed values.
-
-Analysis types, objects that contain specific sets of data related to a type of file or experiment, are defined as schemas. A schema is composed of two portions:
-
-- a minimal, base data model that is defined for patient data
-
-- a dynamic schema uploaded by a Song administrator. The dynamic schema is extremely flexible, in order to encode any desired business rules that submitted data must comply to.
-
-The Song Base Schema
-Song requires a very minimal set of data to be provided for each schema type, called the base schema. This data includes basic non-identifiable primary keys of patient data including:
-
-Donor ID, Specimen ID, and Sample ID
-Basic cancer sample descriptors
-In JSON format, the base schema is rendered:
+Here is a simple example of a JSON that could be submitted to Song
 
 ```json
-{
-  "studyId": "EXAMPLE",
-  "analysisType": {
-    "name": "sequencing_experiment"
-  },
-  "samples": [
-    {
-      "submitterSampleId": "exammple-sample-id",
-      "matchedNormalSubmitterSampleId": null,
-      "sampleType": "Amplified DNA",
-      "specimen": {
-        "submitterSpecimenId": "exammple-specimen-id",
-        "specimenType": "Normal",
-        "tumourNormalDesignation": "Normal",
-        "specimenTissueSource": "Blood derived"
-      },
-      "donor": {
-        "submitterDonorId": "exammple-donor-id",
-        "gender": "Male"
-      }
-    }
-  ]
-}
+1 {
+2  "studyId": "mystudyID-123",
+3  "analysisType": {
+4    "name": "variant_call"
+5  },
+6  "samples": [
+7    {
+8      "submitterSampleId": "exammple-sample-id",
+9      "matchedNormalSubmitterSampleId": null,
+10      "sampleType": "Amplified DNA",
+11      "specimen": {
+12        "submitterSpecimenId": "exammple-specimen-id",
+13        "specimenType": "Normal",
+14        "tumourNormalDesignation": "Normal",
+15        "specimenTissueSource": "Blood derived"
+16      },
+17      "donor": {
+18        "submitterDonorId": "exammple-donor-id",
+19        "gender": "Male"
+20      }
+21    }
+22  ]
+23 }
 ```
 
-This JSON, and all of the allowed values for the fields, are defined by the Song base meta-schema, which is referenced below.
+{1-23} represents the metadata JSON object
 
-base schema linked here http://json-schema.org/draft-07/schema#
+2 the studyId name has the value pair associated with our studies name (all data to be submitted and indexed together.)
+
+3 the analysis type name value pair is a nested object that references a seperate JSON document (we will get to this soon)
+
+6-22 the samples JSON name value pair is an array of recorded metadata for each sample being submitted, in this case one sample. Submitting two samples would look like the following
+
+```json
+1 {
+2  "studyId": "mystudyID-123",
+3  "analysisType": {
+4    "name": "variant_call"
+5  },
+6  "samples": [
+7    {
+8      "submitterSampleId": "exammple-sample-id-1",
+9      "matchedNormalSubmitterSampleId": null,
+10      "sampleType": "Amplified DNA",
+11      "specimen": {
+12        "submitterSpecimenId": "exammple-specimen-id-2",
+13        "specimenType": "Normal",
+14        "tumourNormalDesignation": "Normal",
+15        "specimenTissueSource": "Blood derived"
+16      },
+17      "donor": {
+18        "submitterDonorId": "exammple-donor-id",
+19        "gender": "Male"
+20      }
+21    },
+22     {
+23     "submitterSampleId": "exammple-sample-id-2",
+24     "matchedNormalSubmitterSampleId": null,
+25      "sampleType": "Amplified DNA",
+26      "specimen": {
+27        "submitterSpecimenId": "exammple-specimen-id-2",
+28        "specimenType": "Normal",
+29        "tumourNormalDesignation": "Normal",
+30        "specimenTissueSource": "Blood derived"
+31      },
+32     "donor": {
+33        "submitterDonorId": "exammple-donor-id",
+34        "gender": "Female"
+35      }
+36    }
+37  ]
+38 }
+```
+
+Same studyID, same analysis type, just a new list item included in under the `samples` nested array being uploaded. 
+
+Within each sample we can see the recorded metadata including `submitterSampleId` , 
+`matchedNormalSubmitterSampleId`, `sampleType`, `specimen`, `submitterSpecimenId`, `specimenType`...
+
+lastly each sample object contains a nested `donor` object that includes some simple metadata about the donor in this case it only contains a `submitterDonorId` and the gender of the donor. 
+
+<!--no mention of file data-->
+
+At this point you may be asking, how do I know how to fill out this information? This is where the analysis type comes into play.
+
+At the top of our submitted JSON we defined our Analysis type. An analysis type is a seperate JSON document that describes the expected structuring and formatting of the subitted JSON file this is also refered to as the JSON Schema. 
+
+**The JSON Schema**
+
+So our metadata is submitted to Song as a JSON file. 
+
+To insure the consistency and integrety of the data all submitted metadata is verified against a JSON schema. 
+
+This ensures that all submitted data meets the desired structure and allowed values. 
+
+To validate metadata at the time of submission, Song refreneces the JSON Schema (this is the value pair we used under the `analysistype` name within in our submitted JSON file). 
+
+The JSON Schema provides a vocabulary for the structural validation of JSON formatted data, for example, ensuring that required fields are present, or that the contents of a field matches the desired data type or allowed values.
+
+A schema is composed of two portions:
+
+1. A base data model <!--(that is defined for patient data)-->
+
+2. A dynamic schema uploaded by a Song administrator. The dynamic schema is extremely flexible, in order to encode any desired rules that submitted data must comply to.
+
+Song administrators, can model the data inside the analysis type folder (the schema). 
+
+An analysis type can contain any variety of information that needs to be recorded about a file type, defined in the submitted analysis JSON.
+
+For demonstration purposes here, we will simply submit a default analysis type that is already pre-built called variantCall.
+
+The JSON schema that our submitted metadata will be validated against looks like the following:
+
+http://json-schema.org/draft-07/schema#
 
 ***
 
@@ -556,6 +624,8 @@ If successful, either the cURL command or the Swagger UI will return a successfu
 ### Verify the Data in the Portal
 
 ### Outro
+
+
 
 
 
