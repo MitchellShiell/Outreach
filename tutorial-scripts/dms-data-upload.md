@@ -596,7 +596,7 @@ Under management-controller, click the POST /index/repository/{repositoryCode}/s
 Click Try it out.
 
 In studyId, enter ABC123, the study you created earlier.
-In repositoryCode, you must enter song.overture.
+In repositoryCode, you must enter `song.overture.`
 Click Execute.
 
 If successful, either the cURL command or the Swagger UI will return a successful response indicating the study is created in Song:
