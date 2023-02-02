@@ -19,7 +19,7 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 - [Download and Configure the Song Client](#downloading-and-configuring-the-song-client) :white_check_mark:
 - [Download and Configure Score Client](#downloading-and-configuring-the-score-client) :white_check_mark:
 #### [Part 2 Preparing your first payload](#part-2-preparing-our-first-payload)
-- [Create a Study in song](#creating-a-study-in-song)
+- [Create a Study in song](#creating-a-study-in-song) :white_check_mark:
 - [Submitting an Analysis to Song](#submitting-an-analysis-to-song)
 - [Create Manifest for Score](#create-manifest-for-score)
 #### [Part 3 Uploading and Publishing](#part-3-uploading-and-publishing-the-analysis)
@@ -305,7 +305,7 @@ Click Try it out then select the Authorize button in the top right.
 Under Authorization, I'll enter the Bearer <API Key> and click Authorize. (this is the same API key we obtained from our DMS UI)
  
 In the study body, we will update the studyId field, by replacing "string" with "mystudyID-123".
-In the studyId field, enter ABC123.
+In the studyId field, enter mystudyID-123.
 
 Click Execute. 
 
