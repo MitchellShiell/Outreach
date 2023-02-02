@@ -16,8 +16,8 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 
 #### [Introduction](#part-0-introduction) :white_check_mark:
 #### [Part 1 Setting up the Song and Score Clients](#part-1-setting-up-the-score-and-song-clients) :white_check_mark:
-- [Download and Configure the Song Client](#download-and-configure-the-song-client)
-- [Download and Configure Score Client](#download-and-configure-the-song-client)
+- [Download and Configure the Song Client](#downloading-and-configuring-the-song-client) :white_check_mark:
+- [Download and Configure Score Client](#downloading-and-configuring-the-score-client) :white_check_mark:
 #### [Part 2 Preparing your first payload](#part-2-preparing-our-first-payload)
 - [Create a Study in song](#create-a-study-in-song)
 - [Submitting an Analysis to Song](#submitting-an-analysis-to-song)
@@ -83,19 +83,15 @@ Lets start by downloading and configuring the song and score clients.
 </br>
 
 
-### Download and Configure the Song Client
+### Downloading and Configuring the Song Client
 
 </br>
 
-As we move through these steps I'll take some time to explain the structure and function of each components
+Song is providing a metadata management and storage system to easily track and manage files in a secure and validated environment, against a standard or custom schema which we will discuss later.
 
-Song is providing a metadata management and storage system to easily track and manage files in a secure and validated environment, against a standard or custom data model which we will dicuss later.
+Lets begin by downloading and unziping the latest Song client, 
 
-Lets begin by downloading and unzip the latest Song client, 
-
-The song client is the command-line client we will use for various metadata operations such as submitting analyses, creating file manifests for Score, and so on. 
-
-all these commands can be found within our documentation at overture.bio but for this video I have linked a seperate document with each required command so you can easily copy and paste as we go through.
+I've linked a seperate document that includes each command I'll be using so you can easily copy and paste as we go through.
 
 From the command line terminal I will enter the following command.
 
@@ -119,9 +115,15 @@ Within the song client directory we'll be updating the 'song-client-5.0.2/conf/a
 
 I'll first input my domain under the serverUrl field
 
-next I'll update the study ID field with the name of my study `mystudy-123`
+next I'll update the study ID field with the name of my study  in this case `mystudy-123`
 
-our final field to update here is going to be our accessToken. To aquire this we will quickly check in on our user and application permissions within Ego
+In song ***a study*** is simply a group of data that belongs together therefore will be submitted and indexed together. 
+
+I will review this concept again as we get into our data upload workflow.
+
+Our final field to update here is going to be our accessToken. 
+
+To aquire this we will quickly check in on our user and application permissions within Ego
 
 ```yml
 client:
@@ -146,7 +148,9 @@ client:
 
 to access the ego ui we will go to our domain /ego-ui
 
-From here we will check the left navigation, click Groups and verify that the dms-admin group has been created and is assigned the permissions: DMS.WRITE, SONG.WRITE, SCORE.WRITE. Perfect these permissions will be required to perform our data upload operations if they are not set you can edit them by click edit in the top left of the right hand panel.
+From here we will check the left navigation, click Groups and verify that the dms-admin group has been created and is assigned the permissions: DMS.WRITE, SONG.WRITE, SCORE.WRITE.
+
+Perfect these permissions will be required to perform our data upload operations if they are not set you can edit them by click edit in the top left of the right hand panel.
 
 That is our appliations authorizations lets check our Users and verify that we as users can do the same. Perfect as you can see we are able to DMS.WRITE, SONG.WRITE, SCORE.WRITE.
 
@@ -156,7 +160,7 @@ This API Key is used for all subsequent operations with the various Overture ser
 
 Now that we have the api we will update the song application.yml file
 
-with that saved we can move on to our next step, downloading and configuring the score client
+okay, with that saved we can move on to our next step, downloading and configuring the score client
 
 ***
 
@@ -168,11 +172,11 @@ with that saved we can move on to our next step, downloading and configuring the
 
 ***
 
-### Download and Configure Score Client
+### Downloading and Configuring the Score Client
 
 Next,we will download and configure the Score client. This command-line client is used to upload and download data files to and from your configured object storage service. 
 
-Very similar to the song setup, we will first download and unzip the latest Score client from our servers terminal command line, then switch to the unzipped directory:
+Very similar to the song setup, we will first download and unzip the latest Score client from the command line within our server
 
 ```bash
 wget -O score-client.tar.gz https://artifacts.oicr.on.ca/artifactory/dcc-release/bio/overture/score-client/[RELEASE]/score-client-[RELEASE]-dist.tar.gz
@@ -185,28 +189,28 @@ tar xvzf score-client.tar.gz
 ```
 
 ```bash 
-cd score-client-<latest-release-number>
+cd score-client-5.8.1
 ```
 
-We will open the application.properties file from `score-client/<latest-release-number>/conf/application.properties`
+We will next open the application.properties file from `score-client/5.8.1/conf/application.properties`
 
 from here we will set `access token` to the API Key we saved eariler via the DMS UI.
 
-lets uncomment `metadata.url` and set it as follows: 
+Next lets uncomment the line defining our `metadata.url` and set it to our domain with the song-api
 
 ```bash
 # The location of the metadata service (SONG)
 metadata.url=http://dmstutorial.cancercollaboratory.org/song-api
 ```
 
-we will also `storage.url` and set is it as follows:
+we will also uncomment the line defining our `storage.url` and set it to our domain with the score-api
 
 ```bash 
 # The location of the object storage service (SCORE)
 storage.url=http://dmstutorial.cancercollaboratory.org/score-api
 ```
 
-if you are setting up locally these steps are very much the same however you will need to add the local directories to these fields, if you run into any issues be sure to reference the documentation on our website.
+if you are setting up locally these steps are very much the same however you will need to add local directories to these fields, if you run into any issues be sure to reference the documentation on our website.
 
 Now that we have our song and score client configured we are ready to prepare our first payload. 
 
