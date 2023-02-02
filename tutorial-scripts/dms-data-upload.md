@@ -14,7 +14,7 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 ## Structure
 
 
-#### [Introduction](#part-0-introduction)
+#### [Introduction](#part-0-introduction) :white_check_mark:
 #### [Part 1 Setting up the Song and Score Clients](#part-1-setting-up-the-score-and-song-clients) :white_check_mark:
 - [Download and Configure the Song Client](#download-and-configure-the-song-client)
 - [Download and Configure Score Client](#download-and-configure-the-song-client)
@@ -34,7 +34,15 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 
 <!--Revisit once tutorial is complete-->
 
-In this video I'll demonstrate and explain a basic data upload workflow using Overtures data management system. This video tutorial is split up into 3 segments. We will be using demo data that you can download from the link in the description. If you have not already you can check out our Overture overview video as well as our Overture setup video that proceed this tutorial.  I'll link both those here. Okay with that out the way lets get started
+In this video I'll be demonstrating and explaining a basic data upload workflow using Overtures data management system.
+
+This video tutorial is split up into 3 segments.
+
+We'll be using demo data that you can download from the link in the description. If you have not already you can check out our Overture overview video as well as our Overture setup video that proceeded this tutorial. 
+
+I'll link both those here. 
+
+Okay with that out the way lets get started
  
 ***
 
@@ -50,7 +58,15 @@ In this video I'll demonstrate and explain a basic data upload workflow using Ov
 
 ## Part 1 Setting up the Score and Song Clients 
 
-To submit data to our DMS portal we will need to use the components Score and Song from the overture software suite. As explained in previous videos score is our file transfer and object storage microservice while song is our metadata tracking and validation service. There are two ways to interact with Score and Song, the first is through the command line interface and the second is using the swagger UIs. In this video we will cover both as we go. 
+To submit data to our DMS portal we will need to use the Overture components Song and Score.
+
+As explained in previous videos score is our file transfer and object storage microservice
+
+while song is our metadata tracking and validation service.
+
+There are two ways to interact with Song and Score, the first is through the command line interface and the second is using the swagger UIs.
+
+In this video we will cover both methods as we go. 
 
 Lets start by downloading and configuring the song and score clients. 
 
