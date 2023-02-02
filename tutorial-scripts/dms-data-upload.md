@@ -313,9 +313,6 @@ If successful, we will get the same status response, this indicates to us that t
 
 ### Submiting an Analysis to Song
 
-
-### Submiting an Analysis to Song
-
 Next, we must submit an analysis to Song. 
 
 What is an ***analysis?***
