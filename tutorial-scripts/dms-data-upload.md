@@ -19,7 +19,7 @@ Chrome brower in full screen mode on second desktop so i can swipe back and four
 - [Download and Configure the Song Client](#downloading-and-configuring-the-song-client) :white_check_mark:
 - [Download and Configure Score Client](#downloading-and-configuring-the-score-client) :white_check_mark:
 #### [Part 2 Preparing your first payload](#part-2-preparing-our-first-payload)
-- [Create a Study in song](#create-a-study-in-song)
+- [Create a Study in song](#creating-a-study-in-song)
 - [Submitting an Analysis to Song](#submitting-an-analysis-to-song)
 - [Create Manifest for Score](#create-manifest-for-score)
 #### [Part 3 Uploading and Publishing](#part-3-uploading-and-publishing-the-analysis)
@@ -230,17 +230,27 @@ Now that we have our song and score client configured we are ready to prepare ou
 
 <br/>
 
-### Create a Study in song
+### Creating a Study in song
 
 **What is a study**
 
 Our first step in our data upload workflow is going to be creating ***a study*** in song.
 
-In song ***a study*** is simply a group of data that belongs together therefore will be submitted and indexed together.
+In song ***a study*** is simply a group of data that belongs together and therefore will be submitted and indexed together.
 
-For this video our study is all the data we are submitting from the `mystudy-123` example data folder.
+For this video our study is all the data we are submitting from the `mystudyID-123` example data folder.
 
-With song we can create a study in our command line using our client or using the swagger UI
+Within this study folder I'll want to prepare a few folders, in this case I'll create the following folders 
+
+```bash
+mkdir analyses input-files manifest
+```
+
+Now I just need to populate these folders with some data, for this I'll head to the overture-stack github page...
+ - add vcf files to input files 
+ - move the exampleVariantCall.json file into the analyses folder
+
+Now if your wondering why we set this up as is as well as what this JSON file that's great I will explain this as we go through but for now lets first make sure we have our folders and files properly organized.
 
 ***
 
@@ -251,6 +261,10 @@ With song we can create a study in our command line using our client or using th
 </br>
 
 ***
+
+So our first set in our data submission workflow will be to add ***a study*** to the song repository.
+
+As mentioned earlier a study is simply a group of data that belongs together therefore will be submitted and indexed together. 
 
 ***To create your study via cURL in our terminal we will enter the following command:**
 
@@ -260,17 +274,13 @@ curl -X POST "https://dmstutorial.cancercollaboratory.org/song-api/studies/mystu
 
 We will leave the description, info, name, organization blank (can be filled in optionally if you want).
 
-If successful, we will get this status response:
-
 ```bash
 {
   "message": "Successfully created study 'mystudyID-123'"
 }
 ```
 
- This indicates to us that the study was created in Song
-
-
+Great now our study has been created in Song. 
 
 ***
 
@@ -281,6 +291,8 @@ If successful, we will get this status response:
 </br>
 
 ***
+
+Before moving foward lets see how this step works using our swagger UI
 
 ***To Create a Study Using Swagger UI we will need to go to the Song API's Swagger UI:***
 
