@@ -49,12 +49,18 @@ curl -X POST "https://dmstutorial.cancercollaboratory.org/song-api/studies/mystu
 
 ## Upload to Score
 
+```bash
 ./score-client-5.3.0/bin/score-client-upload --manifest ./mystudyID-456/manifest/manifest.txt
+```
 
 ## Publish Analysis
 
+```bash
 ./song-client-4.5.0/bin/sing/publish -a <analysisID>
-  
+```
+
 ## Index Study
   
+```bash
 curl -X POST "https://dmstutorial.cancercollaboratory.org/maestro/index/repository/song.overture/study/mystudyID-456 -H "accept: */* -d ""
+```
