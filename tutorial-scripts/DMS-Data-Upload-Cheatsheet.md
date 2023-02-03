@@ -39,12 +39,22 @@ curl -X POST "https://dmstutorial.cancercollaboratory.org/song-api/studies/mystu
 ## Submitting an analysis
 
 ```bash
-./bin/sing submit -f example-payload.json
+./song-client-5.0.2/bin/sing submit -f ./mystudyID-456/analyses/exampleVariantCall.json
 ```
-## Submiting the manifest
+## Create the manifest
 
 ```bash
-./bin/sing manifest -a a4142a01-1274-45b4-942a-01127465b422 -f /some/output/dir/manifest.txt  -d /submitting/file/directory
+./song-client-5.0.2/bin/sing manifest -a a4142a01-1274-45b4-942a-01127465b422 -f mystudyID-456/manifest/manifest.txt  -d mystudyID-456/input-files/
 ```
 
+## Upload to Score
 
+./score-client-5.3.0/bin/score-client-upload --manifest ./mystudyID-456/manifest/manifest.txt
+
+## Publish Analysis
+
+./song-client-4.5.0/bin/sing/publish -a <analysisID>
+  
+## Index Study
+  
+curl -X POST "https://dmstutorial.cancercollaboratory.org/maestro/index/repository/song.overture/study/mystudyID-456 -H "accept: */* -d ""
