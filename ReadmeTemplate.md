@@ -8,7 +8,7 @@
 <img align="right" width="66vw" vspace="5" src="icon-ego.png" alt="ego-logo" hspace="30"/>
 </div>
 
-What is the problem. What does this component do to solve it. Are there any related components (JS client, UI, etc.) *~3-5 sentences*
+*What is the problem. What does this component do to solve it. Are there any related components (JS client, UI, etc.) *~3-5 sentences*
 
 <!--Blockqoute-->
 
@@ -42,7 +42,7 @@ What is the problem. What does this component do to solve it. Are there any rela
 
 <!--Blockqoute-->
 
-***Info and logos should line up from view of Repo***
+****Info and logos should line up from view of Repo***
 
 ## Technical Specifications
 
