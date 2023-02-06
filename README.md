@@ -6,12 +6,6 @@ The role of Outreach is to maximize the promotion and dissemination of Overtures
 
 In this repository you will find all resources related to Overture Outreach.
 
-# Road Map
-
-- Understand People and Product
-- Set up Outreach resource center
-
-
 ## Quick Links
 
 #### [Outreach Wiki](https://github.com/MitchellShiell/Outreach/wiki)
