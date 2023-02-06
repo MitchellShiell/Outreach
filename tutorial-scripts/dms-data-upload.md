@@ -38,7 +38,9 @@ In this video I'll be demonstrating and explaining a basic data upload workflow 
 
 This video tutorial is split up into 3 segments.
 
-We'll be using demo data that you can download from the link in the description. If you have not already you can check out our Overture overview video as well as our Overture setup video that proceeded this tutorial. 
+We'll be using demo data that you can download from the link in the description. 
+
+If you have not already you can check out our Overture overview video as well as our Overture setup video that proceeded this tutorial. 
 
 I'll link both those here. 
 
@@ -81,7 +83,6 @@ Lets start by downloading and configuring the song and score clients.
 ***
 
 </br>
-
 
 ### Downloading and Configuring the Song Client
 
@@ -156,7 +157,9 @@ That is our appliations authorizations lets check our Users and verify that we a
 
 Now that we have verified we have the correct permissions, we can head to our DMS UI to generate our API.
 
-This API Key is used for all subsequent operations with the various Overture service APIs you will interact with. once generated it will be availabe how ever long you specificed when you first configured your DMS. In this case 29 days.
+This API Key is used for all subsequent operations with the various Overture service APIs you will interact with.
+
+once generated it will be availabe how ever long you specificed when you first configured your DMS. In this case 29 days.
 
 Now that we have the api we will update the song application.yml file
 
